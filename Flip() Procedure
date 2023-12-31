@@ -1,0 +1,63 @@
+9608 Summer 2018 P2V2 Q6
+
+A 2D array, Picture, contains data representing a bitmap image. Each element of the array
+represents one pixel of the image. The image is grey-scale encoded where the value of each
+pixel ranges from 0 (representing black) to 255 (representing white) with intermediate values
+representing different levels of grey.
+A graphics program needs a procedure, Flip()
+
+===============================================================================================
+*ANSWER*
+
+
+Module Program
+    Sub flip()
+        Dim Picture(0 To 4, 0 To 7) As Integer
+        Dim random As New Random
+        ' fill array with random data
+        For i = 0 To 4
+            For j = 0 To 7
+                Picture(i, j) = random.Next(1, 255)
+            Next
+        Next
+        'print array
+        Console.WriteLine("array before flip")
+        For i = 0 To 4
+            For j = 0 To 7
+                Console.Write(Picture(i, j) & " ")
+            Next
+            Console.WriteLine()
+        Next
+
+        'flip array by swapping
+        Dim temp, row, column, index As Integer
+        For row = 0 To 4
+            index = 7
+            For column = 0 To 3
+                temp = Picture(row, index)
+                Picture(row, index) = Picture(row, column)
+                Picture(row, column) = temp
+                index -= 1
+            Next
+        Next
+        Console.WriteLine("-------------------------------------------------------")
+        Console.WriteLine("array after flip")
+        ' print array
+        For i = 0 To 4
+            For j = 0 To 7
+                Console.Write(Picture(i, j) & " ")
+            Next
+            Console.WriteLine()
+        Next
+
+    End Sub
+    Sub Main()
+
+        flip()
+        Console.WriteLine("==================================================")
+        flip()
+        Console.WriteLine("==================================================")
+        flip()
+
+    End Sub
+End Module
